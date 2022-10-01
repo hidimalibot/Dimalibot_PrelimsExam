@@ -1,0 +1,40 @@
+- host: all
+  module_defaults:
+    ansible.builtin.file:
+      pip3: pip
+      python3: python
+  become: true
+  task:
+
+ - name: update repository index for Ubuntu
+   apt:
+      update_cache: yes
+   when: ansible_distribution == "Ubuntu"
+
+  - name: install python3, pip3, and Java open-jdk
+    apt:
+      name:
+        - python3
+        - pip
+        - openjdk-8-jdk
+    state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: update respository for CentOS
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: install python3, pip3, and Java open-jdk
+    dnf:
+    name:
+      -python3
+      - pyhton3-pip
+      - java-1.8.0-openjdk
+    state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Banner motd
+    copy:
+    content: "Ansible Manage node by hidimalibot"
+    dest: /etc/motd
