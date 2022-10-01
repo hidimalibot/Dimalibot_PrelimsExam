@@ -6,12 +6,12 @@
   become: true
   task:
 
- - name: update repository index for Ubuntu
+  - name: update repository index for Ubuntu
    apt:
       update_cache: yes
    when: ansible_distribution == "Ubuntu"
 
- - name: install python3, pip3, and Java open-jdk
+  - name: install python3, pip3, and Java open-jdk
     apt:
       name:
         - python3
@@ -28,7 +28,7 @@
   - name: install python3, pip3, and Java open-jdk
     dnf:
     name:
-      -python3
+      - python3
       - pyhton3-pip
       - java-1.8.0-openjdk
     state: latest
