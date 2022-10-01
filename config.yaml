@@ -30,12 +30,22 @@
     dnf:
       name:
         - python3
-        - pyhton3-pip
+        - python3-pip
         - java-1.8.0-openjdk
       state: latest
     when: ansible_distribution == "CentOS"
 
   - name: Banner motd
     copy:
-      content: "Ansible Manage node by hidimalibot"
-      dest: /etc/motd
+     content: "Ansible Manage node by hidimalibot"
+     dest: /etc/motd
+
+  - name: Create user Dimalibot
+    user:
+      name: Dimalibot
+      uid: 1040
+      shell: /bin/bash
+      group: root
+      createhome: yes
+      home: /home/Dimalibot
+
