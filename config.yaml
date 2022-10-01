@@ -6,7 +6,7 @@
   become: true
   task:
 
- - name: Update Repository Index for Ubuntu
+ - name: update repository index for Ubuntu
    apt:
       update_cache: yes
    when: ansible_distribution == "Ubuntu"
@@ -20,7 +20,7 @@
     state: latest
     when: ansible_distribution == "Ubuntu"
 
-  - name: update respository index for CentOS
+  - name: update repository index for CentOS
     dnf:
       update_cache: yes
     when: ansible_distribution == "CentOS"
